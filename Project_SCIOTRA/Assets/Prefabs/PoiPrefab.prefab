@@ -105,6 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdefc7dda7e6c04da60474c151d6bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  latObject: 8
-  lonObject: 10
+  latObject: 0
+  lonObject: 0
   descrip: 
