@@ -17,14 +17,14 @@ public class MapHandlerScript : MonoBehaviour
     void Start()
     {
         Debug.Log("MapHandlerScript");
-        zoom = 0;//  15 el zoom maximo
+        zoom = 15;//  15 el zoom maximo
                  //checked gps status
                  //Input.location.lastData.longitude instead 1.9875f;
                  // Input.location.lastData.latitude instead 41.275250f;   X:16579,6977864583 Y12241,6750331169
-        //WorldToTilePos(1.92f, 41.889f, zoom);
-        WorldToTilePos(2.15f, 41.365f, zoom); //a partir de la longuitud, latitud y un zoom me calcula el tile correspondiete al centro del mapa (centretile)
+                 //WorldToTilePos(2.15f, 41.365f, zoom);
+        WorldToTilePos(2.1522f, 41.3658f, zoom); //a partir de la longuitud, latitud y un zoom me calcula el tile correspondiete al centro del mapa (centretile)
 
-        StartCoroutine(LoadTile(centerTileX, centerTileY, centerTileMap));
+       StartCoroutine(LoadTile(centerTileX, centerTileY, centerTileMap));
 
 
 
@@ -44,7 +44,7 @@ public class MapHandlerScript : MonoBehaviour
     public void DownLoadCenterMapTileGps() //carga el title centrado en el GPS, antes hbra bajado un title fijo
     {
         Debug.Log("cargar mapa "+ Input.location.lastData.longitude);
-        WorldToTilePos(Input.location.lastData.longitude, Input.location.lastData.latitude, zoom);
+        WorldToTilePos(2.15f, 41.365f, zoom);
         LoadTile(centerTileX, centerTileY, centerTileMap);        
     } 
 
@@ -56,6 +56,7 @@ public class MapHandlerScript : MonoBehaviour
         centerTileX = Mathf.FloorToInt((float)tileX);
         centerTileY = Mathf.FloorToInt((float)tileY);
         Debug.Log("X:" + centerTileX + "    " + "Y" + centerTileY);
+      
     }
 
     IEnumerator LoadTile(int x, int y, GameObject quadTile) //valores de x, y, mapa

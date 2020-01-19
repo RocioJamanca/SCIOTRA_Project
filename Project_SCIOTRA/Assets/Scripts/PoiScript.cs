@@ -31,11 +31,9 @@ public class PoiScript : MonoBehaviour
         int zoom = MapHandlerScript.zoom;
 
         //2.152f, 41.363
-
-
+        
         Debug.Log("datos para centrar el MAPA" + x +"," + y+ "," + zoom);//no pasa por aqui¿?
         
-
         double a = DrawCubeX(lonObject, TileToWorldPos(x, y, zoom).X, TileToWorldPos(x + 1, y, zoom).X,zoom);
         double b = DrawCubeY(latObject, TileToWorldPos(x, y + 1, zoom).Y, TileToWorldPos(x, y, zoom).Y,zoom);
         //TileToWo.. dado un tile y un zoom da la longutud y la latitud de la esquina izqueida superior del title.
@@ -58,7 +56,6 @@ public class PoiScript : MonoBehaviour
     {
         Point p = new Point();
         double n = System.Math.PI - ((2.0 * System.Math.PI * tile_y) / System.Math.Pow(2.0, zoom));
-
         p.X = ((tile_x / System.Math.Pow(2.0, zoom) * 360.0) - 180.0);
         p.Y = (180.0 / System.Math.PI * System.Math.Atan(System.Math.Sinh(n)));
 
@@ -69,9 +66,9 @@ public class PoiScript : MonoBehaviour
     public double DrawCubeY(double targetLat, double minLat, double maxLat, int zoom)
     {
        
-        double tileY = (double)((1.0f - Mathf.Log(Mathf.Tan((float)targetLat * Mathf.PI / 180.0f) + 1.0f / Mathf.Cos((float)targetLat * Mathf.PI / 180.0f)) / Mathf.PI) / 2.0f * (1 << zoom));
+        double tileY = (double)((1.0f - Mathf.Log(Mathf.Tan((float)targetLat * Mathf.PI / 180.0f) + 1.0f / Mathf.Cos((float)targetLat * Mathf.PI / 180.0f)) / Mathf.PI) / 2.0f * (1 << 15));
         int TileY = Mathf.FloorToInt((float)tileY);
-        Debug.Log("COORDENADA OBJETO  0 " + "   "+ targetLat);
+        Debug.Log("COORDENADA OBJETO  0 " + "   "+ targetLat + "    "+ TileY);
         double pixelY = ((targetLat - minLat) / (maxLat - minLat));
       
         return pixelY;
@@ -79,11 +76,10 @@ public class PoiScript : MonoBehaviour
 
     public double DrawCubeX(double targetLong, double minLong, double maxLong, int zoom)
     {
-        double tileX = (double)((targetLong + 180.0f) / 360.0f * (1 << zoom));
+        double tileX = (double)((targetLong + 180.0f) / 360.0f * (1 << 15));
         int TileX = Mathf.FloorToInt((float)tileX);
-        Debug.Log("COORDENADA OBJETO'" + tileX);
-        double pixelX = ((tileX - minLong) / (maxLong - minLong));
-        Debug.Log("COORDENADA OBJETO'" + pixelX);
+        Debug.Log("COORDENADA OBJETO  1  '" + tileX + "   " + targetLong);
+        double pixelX = ((targetLong - minLong) / (maxLong - minLong));
         return pixelX;
     }
 
