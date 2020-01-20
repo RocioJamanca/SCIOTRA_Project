@@ -13,14 +13,28 @@ public class PoiScript : MonoBehaviour
     public double lonObject;
     [SerializeField]
     public string descrip;
+    [SerializeField]
+    public string imagen;
+    [SerializeField]
+    public string hora;
+    [SerializeField]
+    public string titulo;
+
+
+    public string info;
+    public RawImage foto;
 
     GameObject Description;
+    GameObject Evento;
+    GameObject Informacion;
 
     // Start is called before the first frame update
     void Start()
     {
        // Debug.Log("PoiScript hgbghgby " );
         Description = GameObject.Find("Description"); //busca un objeto que no exsite (Description)
+        Evento = GameObject.Find("Evento");
+        Informacion = GameObject.Find("Informacion");
     }
 
     public void MapLocation() //localizan y centran el mapa
